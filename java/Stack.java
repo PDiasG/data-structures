@@ -1,12 +1,12 @@
 /*
-* Stack Class
-*
-* The stack is built using a Linked List, and performs four basic operations (push, pop, peek and isEmpty)
-* All operation run in O(1) time
-*
-* @author: PDiasG
-* @date: 09-15-2019
-*
+ * Stack Class
+ *
+ * The stack is built using a Linked List, and performs five basic operations (push, pop, peek, isEmpty and search)
+ * All operation expect search run in O(1) time. Search run in O(n) time.
+ *
+ * @author: PDiasG
+ * @date: 10-21-2019
+ *
  */
 
 public class Stack<T> {
@@ -24,7 +24,12 @@ public class Stack<T> {
         }
     }
 
-    private Node<T> top = null;
+    private Node<T> top;
+
+    //Constructor of the stack, initialize the empty list
+    Stack() {
+        top = null;
+    }
 
     //Returns the data at the top of the Stack, without removing the element from the Stack
     public T peek() {
@@ -50,4 +55,20 @@ public class Stack<T> {
     public boolean isEmpty() {
         return top == null;
     }
+
+    //Returns the 1-based position of an object in the stack, or -1 if it is not present
+    //@param: <T> data, the data to be searched in the Stack
+    public int search(T data) {
+        Node<T> temp = top;
+        int pos = 1;
+
+        while (temp != null) {
+            if (temp.data.equals(data)) return pos;
+            temp = temp.next;
+            pos++;
+        }
+
+        return -1;
+    }
+
 }
